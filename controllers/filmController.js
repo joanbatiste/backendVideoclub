@@ -14,7 +14,7 @@ class FilmController {
     async createFilm(req, res){
 
         let body = req.body;
-
+        console.log(body);
         try{
             let film = new filmModel(body.id, body.title, body.year, body.overview, body.image, body.genre, body.adult);
             let seteo = await database.set(film);
