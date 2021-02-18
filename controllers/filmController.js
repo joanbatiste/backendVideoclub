@@ -44,6 +44,14 @@ class FilmController {
 
     };
 
+    //UPDATE (modificar datos)
+
+
+    //DELETE (borrar datos)
 
 
 }
+
+
+let filmController = new FilmController;
+module.exports = filmController;
