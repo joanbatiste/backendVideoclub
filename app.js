@@ -6,14 +6,14 @@ const app = express();
 
 const port = 3000;
 
+//Importación de la conexion a bd
+let conectionDb = require("./dataBase/filmDb");
 
 //Importación de las rutas.
-
 let filmRouter = require('./routers/filmRouter');
 
 //Enrutador de películas con el recurso /film
 app.use('/film', filmRouter);
 
 //Levantar servidor
-
 app.listen(port, () => console.log(`Listening at ${port}`));
