@@ -1,6 +1,6 @@
+const mongoose = require("mongoose");
 
-const filmModel = require("../models/filmModel");
-
+const film = require("../models/filmModel");
 
 
 class FilmController {
@@ -16,14 +16,13 @@ class FilmController {
         let body = req.body;
         console.log(body);
         try{
-            let film = new filmModel(body.id, body.title, body.year, body.overview, body.image, body.genre, body.adult);
-            let seteo = await database.set(film);
-            if(seteo){
-                res.send("Bien, el film se ha guardado");
-            }
+            let createdFilm = await film.create(body);
+            res
+                .status(201)
+                .json(createdFilm);
 
         }catch{
-            console.log("error: no se ha podido setear!");
+            console.log("error: no se ha podido crear!");
 
         }
         return;
@@ -42,13 +41,24 @@ class FilmController {
             console.log(error)
         }
 
+
     };
 
     //UPDATE (modificar datos)
 
+    async updateFilm (req,res){
+        try{
+
+        }catch(error){
+
+        }
+    }
 
     //DELETE (borrar datos)
 
+    async deleteFilm (req, res){
+
+    }
 
 }
 
