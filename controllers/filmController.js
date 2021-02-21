@@ -13,34 +13,50 @@ class FilmController {
     //CREATE (dar un alta)
     async createFilm(req, res){
 
-        let body = req.body;
+        const body = req.body;
         console.log(body);
         try{
             let createdFilm = await film.create(body);
             res
-                .status(201)
+                .status(200)
                 .json(createdFilm);
 
         }catch{
             console.log("error: no se ha podido crear!");
 
         }
-        return;
+        
     };
 
-    //READ (traer datos)
+    //READ (traer todas las pelis)
     async  bringFilms(req, res){
 
         try{
-            let getting = await database.get();
-            if(getting){
-                res.send(getting)
-            }
+            let filmCollection = await film.find();
+            res
+                .status(200)
+                .json(filmCollection);
 
         }catch(error){
             console.log(error)
         }
+    };
 
+    //Traer Una peli por ID
+    async bringOneFilm(req, res){
+        const _id = req.params.id;
+        try{
+            const onefilm = await film.findOne({_id});
+            res
+                .status(500)
+                .json(onefilm);
+        }catch (err){
+            res
+                .status(400)
+                .json({
+                    message: err
+                })
+        }
 
     };
 
@@ -57,7 +73,22 @@ class FilmController {
     //DELETE (borrar datos)
 
     async deleteFilm (req, res){
-
+        const _id = req.params.id;
+        try{
+            const removedFilm = await film.findByIdAndDelete({_id});
+            if(!removedFilm){
+                return res.status(404).json({
+                    message: err
+                })
+            }
+            res.json(removedFilm)
+        }catch(err){
+            res
+                .status(400)
+                .json({
+                    message: err
+                })
+        }
     }
 
 }
