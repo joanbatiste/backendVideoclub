@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { create } = require("../models/filmModel");
 
 const Film = require("../models/filmModel");
 
@@ -14,12 +15,12 @@ class FilmController {
     async createFilm(req, res){
 
         const body = req.body;
-        console.log(body);
+        // console.log(body);
         try{
+            
             let film = new Film(body);
             let createdFilm = await film.save();
 
-            // let createdFilm = await film.create(body);
             res
             .status(200)
             .json(createdFilm);
@@ -37,10 +38,10 @@ class FilmController {
     async  bringFilms(req, res){
 
         try{
-            let filmCollection = await film.find();
+            let filmCollection = await Film.find();
             res
-                .status(200)
-                .json(filmCollection);
+            .status(200)
+            .json(filmCollection);
 
         }catch(error){
             console.log(error)
@@ -50,10 +51,11 @@ class FilmController {
     //Traer Una peli por ID
     async bringOneFilm(req, res){
         const _id = req.params.id;
+        console.log(_id);
         try{
-            const onefilm = await film.findOne({_id});
+            const onefilm = await Film.findById(_id);
             res
-                .status(500)
+                .status(200)
                 .json(onefilm);
         }catch (err){
             res
@@ -68,19 +70,35 @@ class FilmController {
     //UPDATE (modificar datos)
 
     async updateFilm (req,res){
+        const _id = req.params.id;
+        const body = req.body;
+
         try{
+            const updateFilm = await Film.findByIdAndUpdate(_id, body,{new: true});
+            if(!updateFilm){
+                return res.status(404).json({
+                    message: err
+                })
+            }
+            res
+            .status(200)
+            .json(updateFilm)
 
         }catch(error){
-
+            res
+            .status(500)
+            .json({
+                message: err
+            })
         }
-    }
+    };
 
     //DELETE (borrar datos)
 
     async deleteFilm (req, res){
         const _id = req.params.id;
         try{
-            const removedFilm = await film.findByIdAndDelete({_id});
+            const removedFilm = await Film.findByIdAndDelete(_id);
             if(!removedFilm){
                 return res.status(404).json({
                     message: err

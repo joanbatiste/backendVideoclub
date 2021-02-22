@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const filmSchema = new Schema({
-    // id: {
-    //     type: ObjectId,
-    // },
+    id: {
+        type: ObjectId,
+    },
     title:{
         type: String,
         
