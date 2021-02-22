@@ -1,3 +1,5 @@
+//Requerimos todo lo necesario de la librería mongoose para crear el modelo de pelicula
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
@@ -50,7 +52,7 @@ const filmSchema = new Schema({
         type: Boolean,
         default: false
     }
-})
+});
 
 const Film = mongoose.model("Film", filmSchema);
 module.exports = Film;

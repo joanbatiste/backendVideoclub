@@ -1,21 +1,34 @@
+//Requerimos todo lo necesario de la librería mongoose para crear el modelo de usuario
 
-class User {
-    constructor(id, name, surname, dni, email, password, phone, direction, payment){
-        this.id = id,
-        this.name = name,
-        this.surname = surname,
-        this.dni = dni,
-        this.email = email,
-        this.password = password,
-        this.phone = phone,
-        this.direction = direction,
-        this.payment = payment 
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
+const userSchema = new Schema({
 
-    }
+    id: {
+        type: ObjectId
+    },
+    name: {
+        type: String
+    },
+    surname: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    phone: {
+        type: String
+    },
+    direction: {
+        type: String
+    },
+    payment: {
+        type: String
+    },
+});
 
-
-};
-
+const User = mongoose.model("User", userSchema);
 module.exports = User;
 

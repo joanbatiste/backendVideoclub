@@ -112,9 +112,9 @@ class FilmController {
                     message: err
                 })
         }
-    }
+    };
 
-}
+};
 
 
 let filmController = new FilmController;
