@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const filmSchema = new Schema({
-    id: {
-        type: ObjectId,
-    },
+    // id: {
+    //     type: ObjectId,
+    // },
     title:{
         type: String,
-        require : true
         
+        default: "movie"
         
     },
     year: {
@@ -44,6 +44,7 @@ const filmSchema = new Schema({
             "War": 10752,
             "Western": 37
         }
+        
     },
     adult: {
         type: Boolean,
@@ -51,8 +52,8 @@ const filmSchema = new Schema({
     }
 })
 
-const film = mongoose.model("film", filmSchema);
-module.exports = film;
+const Film = mongoose.model("Film", filmSchema);
+module.exports = Film;
 
 
 

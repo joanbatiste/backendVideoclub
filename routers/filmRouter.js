@@ -6,7 +6,7 @@ const filmController = require("../controllers/filmController");
 //CREACION DE ENDPOINTS
 
 //Endpoint para guardar una pelicula
-router.post("/saveFilm", filmController.createFilm);
+router.post("/", filmController.createFilm);
 
 //Endpoint para traer las peliculas
 router.get("/allFilms", filmController.bringFilms);

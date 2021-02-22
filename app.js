@@ -2,12 +2,19 @@
 
 const express = require("express");
 
+
 const app = express();
+
+app.use(express.json());
 
 const port = 3000;
 
 //Importación de la conexion a bd
-let conectionDb = require("./dataBase/filmDb");
+const conectionDb = require("./dataBase/filmDb");
+conectionDb.then(() =>{
+    app.listen(port, () => console.log(`Listening at ${port}`));
+});
+
 
 //Importación de las rutas.
 let filmRouter = require('./routers/filmRouter');
@@ -16,4 +23,4 @@ let filmRouter = require('./routers/filmRouter');
 app.use('/film', filmRouter);
 
 //Levantar servidor
-app.listen(port, () => console.log(`Listening at ${port}`));
+

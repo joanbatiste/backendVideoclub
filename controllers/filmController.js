@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const film = require("../models/filmModel");
+const Film = require("../models/filmModel");
 
 
 class FilmController {
@@ -16,12 +16,17 @@ class FilmController {
         const body = req.body;
         console.log(body);
         try{
-            let createdFilm = await film.create(body);
+            let film = new Film(body);
+            let createdFilm = await film.save();
+
+            // let createdFilm = await film.create(body);
             res
-                .status(200)
-                .json(createdFilm);
+            .status(200)
+            .json(createdFilm);
 
         }catch{
+            res
+            .status(500)
             console.log("error: no se ha podido crear!");
 
         }
