@@ -9,11 +9,11 @@ const orderSchema = new Schema({
         type: ObjectId
     },
     user_owner:{
-        type: ObjectId,
+        type: String,
         require:true
     },
     film: {
-        type: ObjectId,
+        type: String,
         require: true
     },
     order_date:{

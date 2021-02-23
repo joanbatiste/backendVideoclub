@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const User = require("../models/orderModel");
+const Order = require("../models/orderModel");
 
 class OrderController {
 
@@ -12,10 +12,11 @@ class OrderController {
     //Create New Order
     async createOrder(req, res){
         const body = req.body;
-        
+        console.log(body);
         try{
-            let user = new Order(body);
-            let createdOrder = await user.save();
+            let order = new Order(body);
+            console.log("Quiero crear un pedido", order);
+            let createdOrder = await order.save();
             
             res
             .status(200)
