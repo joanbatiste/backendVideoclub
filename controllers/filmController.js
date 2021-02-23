@@ -1,3 +1,4 @@
+const { query } = require("express");
 const mongoose = require("mongoose");
 const { create } = require("../models/filmModel");
 
@@ -66,6 +67,25 @@ class FilmController {
         }
 
     };
+    //Traer una peli por titulo
+    async searchOneFilm(req, res,){
+        const title = req.params.title;
+        
+        try{
+            const titlefilm = await Film.findOne({"title": title});
+            res
+                .status(200)
+                .json(titlefilm);
+        }catch (err){
+            res
+                .status(400)
+                .json({
+                    message: err
+                })
+        }
+
+    };
+    
 
     //UPDATE (modificar datos)
 

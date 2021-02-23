@@ -14,6 +14,9 @@ router.get("/allFilms", filmController.bringFilms);
 //Endpoint para traer una sola peli
 router.get("/oneFilm/:id", filmController.bringOneFilm);
 
+//Endpoint para traer una sola peli
+router.get("/search/:title", filmController.searchOneFilm);
+
 //Endpoint para borrar una peli
 router.delete("/deleteFilm/:id", filmController.deleteFilm);
 
