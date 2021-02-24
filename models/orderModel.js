@@ -5,10 +5,8 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const orderSchema = new Schema({
-    id: {
-        type: ObjectId
-    },
-    user_owner:{
+    
+    ownerId:{
         type: ObjectId,
         ref: "User",
         require:true

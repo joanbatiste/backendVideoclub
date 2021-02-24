@@ -14,6 +14,8 @@ router.get("/allUsers", userController.bringUsers);
 //Get one user endpoint
 router.get("/oneUser/:id", userController.bringOneUser);
 
+
+
 //Update user data endpoint
 router.put("/updateUser/:id", userController.updateUser);
 
